@@ -2,158 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>manage</title>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <script>
-        window.onload = function () {
-            getRem(1080, 100)
-        };
-        window.onresize = function () {
-            getRem(1080, 100)
-        };
-
-        function getRem(pwidth, prem) {
-            var html = document.getElementsByTagName("html")[0];
-            var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-            html.style.fontSize = oWidth / pwidth * prem + "px";
-        }
-    </script>
-    <style>
-        /*.wrap{position:absolute;top:0;left:0;bottom:0;right:0;}*/
-        /*.title{width:100%;height:0.98rem;line-height:0.98rem;color:#fff;background:#e02222;text-align: center;font-size:0.32rem;}*/
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f2f2f2;
-        }
-
-        .header {
-            position: relative;
-            width: 100%;
-            height: 1.32rem;
-            margin-bottom: 0.28rem;
-            font-family: PingFangSC-Semibold;
-            font-weight: 700;
-            font-size: .54rem;
-            color: #333333;
-            background-image: url("image/nav.png");
-            background-size: 100% 1.32rem;
-            text-align: center;
-            line-height: 1.32rem;
-        }
-
-        .content {
-            position: relative;
-            width: 100%;
-            height: 1.33rem;
-            padding-left: .4rem;
-            background: #fff;
-            font-family: PingFangSC-Regular;
-            font-size: 0.44rem;
-            color: #333333;
-        }
-
-        .content-item {
-            width: 100%;
-            height: 1.33rem;
-            line-height: 1.33rem;
-            padding-left: 1.55rem;
-            border-bottom: 1px solid #D6D6D6;
-            font-family: PingFangSC-Regular;
-            font-size: .44rem;
-            color: #333333;
-        }
-
-        .point {
-            width: 0.68rem;
-            position: absolute;
-            top: 0.66rem;
-            right: 0.4rem;
-
-        }
-
-        .content-item .itemImg-left {
-            position: absolute;
-            left: .55rem;
-            top: .35rem;
-            width: .56rem;
-            height: .62rem;
-        }
-
-        .itemImg-right {
-            vertical-align: top;
-            position: absolute;
-            width: .34rem;
-            height: .34rem;
-            top: .49rem;
-            right: .4rem;
-        }
-
-        .content-last {
-            border-bottom: none;
-        }
-    </style>
+    <title>Title</title>
+     <style type="text/css">
+             #fileBtn{width: 100px;height: 100px; position: absolute;display: block;top: 0;left: 0;opacity: 0;}
+            .fileBtn{width: 100px;height: 100px;border: 2px dashed lightskyblue;text-align: center;position: relative;left: 50px;top: 50px;}
+             .fileBtn p{line-height: 60px;}
+             #img{width: 100px;height: 100px;position: absolute;top: 0;left: 0;z-index: 10;display: none;}
+             .img{width: 100px;height: 100px;}
+             .img-box{margin-top: 80px;}
+         </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">管理</div>
-    <img src="image/Slice 2.png" alt="" class="point">
-    <div class="content">
-        <div class="content-item">
-            <img src="image/img-group1.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            社群资料
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-item">
-            <img src="image/img-group2.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            活动管理
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-item">
-            <img src="image/img-group3.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            成员管理
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-item">
-            <img src="image/img-group4.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            粉丝管理
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-item">
-            <img src="image/img-group5.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            相册管理
-        </div>
-    </div>
-    <div class="content content-last">
-        <div class="content-item content-last">
-            <img src="image/img-group6.png" alt="" class="itemImg-left">
-            <img src="image/right-slice.png" alt="" class="itemImg-right">
-            资质认证
-        </div>
-    </div>
-</div>
+<div class="fileBtn">
+             <p>点击添加图片</p>
+             <input id="fileBtn" type="file" onchange="upload();" accept="image/*" capture="camera" multiple="multiple"/>
+             <!--单张图片容器-->
+             <img src="" id="img"/>
+         </div>
+     <!--多张图片容器-->
+   <div class="img-box">
+   </div>
 </body>
 </html>
+<script>
+         function upload(){
+            var $c = document.querySelector("#fileBtn");//上传出发按钮
+            var $d = document.querySelector("#img");//图片容器
+            var file = $c.files[0];//获取file对象单张
+            var reader = new FileReader();//创建filereader对象
+             reader.readAsDataURL(file);//转换数据
+                reader.onload = function(e){//加载ok时触发的事件
+                         console.log(file);
+                    $d.setAttribute("src", e.target.result);//给图片地址,显示缩略图
+                     $d.style.display="block";//样式显示
+                 };
+        13 };
+</script>
